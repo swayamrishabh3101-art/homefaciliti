@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout";
 import { Link } from "react-router-dom";
 import useReveal from "../../hooks/useReveal";
 import AnimatedCounter from "../../components/common/AnimatedCounter";
+import InteractiveParticles from "../../components/common/InteractiveParticles";
 
 // Import Assets
 import heroBg from "../../assets/images/hero-bg.png";
@@ -209,6 +210,7 @@ function Home() {
     <MainLayout>
       {/* ===== HERO SECTION ===== */}
       <section className="hero-section" style={{ position: "relative", overflow: "hidden" }}>
+        <InteractiveParticles />
 
         <div className="hero-content animate-fade-in" style={{ position: "relative", zIndex: 1 }}>
           <div className="hero-announcement animate-fade-in-left">
@@ -475,24 +477,71 @@ function Home() {
       </section>
 
       {/* ===== RECENT EVENTS SECTION ===== */}
-      <section className="section events-section reveal">
-        <div className="container">
-          <div className="section-header reveal">
-            <span className="section-tag">Our Latest Highlights</span>
-            <h2 className="section-title">AIFTP National Tax Conference 2026</h2>
-            <p className="text-secondary" style={{ marginTop: '16px' }}>Hotel Clarks Amer, Jaipur</p>
+      <section className="evt-section reveal">
+        {/* Header */}
+        <div className="evt-header">
+          <div className="container">
+            <span className="evt-tag">🏆 Our Latest Highlights</span>
+            <h2 className="evt-title">AIFTP National Tax Conference <span className="evt-year">2026</span></h2>
+            <div className="evt-location">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hotel Clarks Amer, Jaipur · March 2026
+            </div>
           </div>
-          
-          <div className="event-gallery-grid">
-            <div className="event-photo photo-1 reveal">
-              <img src={event1} alt="AIFTP Event 1" />
+        </div>
+
+        {/* Photo Grid */}
+        <div className="container">
+          <div className="evt-grid">
+            {/* Large featured photo */}
+            <div className="evt-card evt-card-featured reveal" style={{ transitionDelay: '0s' }}
+              onMouseMove={handleCardTilt} onMouseLeave={handleCardTiltLeave}>
+              <div className="evt-img-wrap">
+                <img src={event1} alt="AIFTP Conference Main" />
+                <div className="evt-overlay"></div>
+                <div className="evt-caption">
+                  <span className="evt-caption-tag">Keynote Session</span>
+                  <p>Opening ceremony with tax experts from across India</p>
+                </div>
+              </div>
             </div>
-            <div className="event-photo photo-2 reveal" style={{ transitionDelay: '0.1s' }}>
-              <img src={event2} alt="AIFTP Event 2" />
+
+            {/* Two stacked photos */}
+            <div className="evt-col-right">
+              <div className="evt-card reveal" style={{ transitionDelay: '0.1s' }}
+                onMouseMove={handleCardTilt} onMouseLeave={handleCardTiltLeave}>
+                <div className="evt-img-wrap">
+                  <img src={event2} alt="AIFTP Conference 2" />
+                  <div className="evt-overlay"></div>
+                  <div className="evt-caption">
+                    <span className="evt-caption-tag">Panel Discussion</span>
+                    <p>National tax reform & compliance updates</p>
+                  </div>
+                </div>
+              </div>
+              <div className="evt-card reveal" style={{ transitionDelay: '0.2s' }}
+                onMouseMove={handleCardTilt} onMouseLeave={handleCardTiltLeave}>
+                <div className="evt-img-wrap">
+                  <img src={event3} alt="AIFTP Conference 3" />
+                  <div className="evt-overlay"></div>
+                  <div className="evt-caption">
+                    <span className="evt-caption-tag">Networking</span>
+                    <p>Building connections with industry leaders</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="event-photo photo-3 reveal" style={{ transitionDelay: '0.2s' }}>
-              <img src={event3} alt="AIFTP Event 3" />
-            </div>
+          </div>
+
+          {/* Bottom stat strip */}
+          <div className="evt-stats-row">
+            <div className="evt-stat">🎤 <strong>30+</strong> Expert Speakers</div>
+            <div className="evt-stat-sep"></div>
+            <div className="evt-stat">👥 <strong>500+</strong> Attendees</div>
+            <div className="evt-stat-sep"></div>
+            <div className="evt-stat">📍 <strong>Jaipur</strong>, Rajasthan</div>
+            <div className="evt-stat-sep"></div>
+            <div className="evt-stat">📅 <strong>March</strong> 2026</div>
           </div>
         </div>
       </section>
@@ -1506,43 +1555,159 @@ function Home() {
           50% { background-position: 100% 50%; }
         }
 
-        .events-section { background: #fff; }
-        .event-gallery-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-template-rows: repeat(2, 250px);
-          gap: 20px;
+        /* ===== PREMIUM EVENTS SECTION ===== */
+        .evt-section {
+          background: linear-gradient(180deg, #f8faff 0%, #eef2ff 100%);
+          padding: 0 0 72px;
         }
-        .event-photo {
-          border-radius: 24px;
+        .evt-header {
+          background: linear-gradient(135deg, #0f0c29 0%, #1e3a8a 50%, #1e1b4b 100%);
+          padding: 64px 0 48px;
+          margin-bottom: 48px;
+          text-align: center;
+          position: relative;
           overflow: hidden;
-          box-shadow: var(--shadow-md);
+        }
+        .evt-header::before {
+          content: '';
+          position: absolute; inset: 0;
+          background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+          background-size: 28px 28px;
+        }
+        .evt-tag {
+          display: inline-block;
+          background: rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.2);
+          color: rgba(255,255,255,0.85);
+          padding: 6px 18px;
+          border-radius: 100px;
+          font-size: 13px;
+          font-weight: 600;
+          margin-bottom: 16px;
           position: relative;
         }
-        .event-photo img {
+        .evt-title {
+          font-size: 42px;
+          font-weight: 900;
+          color: white;
+          margin-bottom: 16px;
+          position: relative;
+        }
+        .evt-year {
+          background: linear-gradient(90deg, #818cf8, #34d399);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .evt-location {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: rgba(255,255,255,0.6);
+          font-size: 15px;
+          font-weight: 500;
+          position: relative;
+        }
+        .evt-location svg { opacity: 0.7; }
+
+        /* Grid */
+        .evt-grid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 20px;
+          margin-bottom: 32px;
+        }
+        .evt-col-right {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .evt-card {
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+          cursor: pointer;
+          will-change: transform;
+          transition: box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+        }
+        .evt-card:hover { box-shadow: 0 20px 60px rgba(37,99,235,0.2); }
+        .evt-card-featured { height: 480px; }
+        .evt-col-right .evt-card { height: 226px; }
+        .evt-img-wrap {
+          position: relative;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s ease;
         }
-        .event-photo:hover img { transform: scale(1.05); }
-        .placeholder-bg {
-          background: #f1f5f9;
+        .evt-img-wrap img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .evt-card:hover .evt-img-wrap img { transform: scale(1.06); }
+        .evt-overlay {
+          position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(10,15,40,0.82) 0%, rgba(10,15,40,0.1) 55%, transparent 100%);
+        }
+        .evt-caption {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          padding: 24px;
+          transform: translateY(8px);
+          transition: transform 0.35s ease;
+        }
+        .evt-card:hover .evt-caption { transform: translateY(0); }
+        .evt-caption-tag {
+          display: inline-block;
+          background: rgba(37,99,235,0.85);
+          backdrop-filter: blur(8px);
+          color: white;
+          font-size: 11px;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 100px;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin-bottom: 8px;
+        }
+        .evt-caption p {
+          color: rgba(255,255,255,0.88);
+          font-size: 14px;
+          font-weight: 500;
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        /* Stats strip */
+        .evt-stats-row {
           display: flex;
           align-items: center;
           justify-content: center;
+          gap: 24px;
+          background: white;
+          border-radius: 16px;
+          padding: 20px 32px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+          border: 1px solid rgba(0,0,0,0.05);
+          flex-wrap: wrap;
         }
-        .placeholder-bg::after {
-          content: 'Photo Placeholder';
-          color: #94a3b8;
-          font-weight: 600;
-          font-size: 16px;
+        .evt-stat {
+          font-size: 15px;
+          color: #475569;
+          display: flex;
+          align-items: center;
+          gap: 6px;
         }
-        .photo-1 { grid-column: span 2; grid-row: span 2; }
-        .photo-2 { grid-column: span 1; grid-row: span 1; }
-        .photo-3 { grid-column: span 1; grid-row: span 1; }
-        .photo-4 { grid-column: span 1; grid-row: span 1; }
-        .photo-5 { grid-column: span 1; grid-row: span 1; }
+        .evt-stat strong { color: #1e293b; font-weight: 800; }
+        .evt-stat-sep { width: 1px; height: 28px; background: #e2e8f0; }
+
+        @media (max-width: 768px) {
+          .evt-grid { grid-template-columns: 1fr; }
+          .evt-card-featured { height: 280px; }
+          .evt-col-right .evt-card { height: 200px; }
+          .evt-title { font-size: 28px; }
+          .evt-stats-row { gap: 12px; }
+          .evt-stat-sep { display: none; }
+        }
 
         @media (max-width: 1024px) {
           .hero-section { grid-template-columns: 1fr; text-align: center; padding-top: 60px; }
