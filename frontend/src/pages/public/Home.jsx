@@ -29,8 +29,6 @@ import acImg from "../../assets/images/ac.png";
 import event1 from "../../assets/images/event1.jpeg";
 import event2 from "../../assets/images/event2.jpeg";
 import event3 from "../../assets/images/event3.jpeg";
-import event4 from "../../assets/images/event4.jpeg";
-import event5 from "../../assets/images/event5.jpeg";
 import pestControlImg from "../../assets/images/pest-control.jpg";
 import solarImg from "../../assets/images/solar.png";
 import advocatesImg from "../../assets/images/advocates.png";
@@ -494,12 +492,6 @@ function Home() {
             </div>
             <div className="event-photo photo-3 reveal" style={{ transitionDelay: '0.2s' }}>
               <img src={event3} alt="AIFTP Event 3" />
-            </div>
-            <div className="event-photo photo-4 reveal" style={{ transitionDelay: '0.3s' }}>
-              <img src={event4} alt="AIFTP Event 4" />
-            </div>
-            <div className="event-photo photo-5 reveal" style={{ transitionDelay: '0.4s' }}>
-              <img src={event5} alt="AIFTP Event 5" />
             </div>
           </div>
         </div>
