@@ -1,6 +1,5 @@
 import MainLayout from "../../layouts/MainLayout";
 import useReveal from "../../hooks/useReveal";
-import InteractiveParticles from "../../components/common/InteractiveParticles";
 import AnimatedCounter from "../../components/common/AnimatedCounter";
 
 // Import Assets
@@ -78,7 +77,6 @@ function About() {
       {/* ===== HERO SECTION ===== */}
       <section className="about-hero" style={{ position: "relative", overflow: "hidden" }}>
         <div className="about-hero-bg" style={{ backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.8)), url(${bannerImg})` }}></div>
-        <InteractiveParticles />
         <div className="container hero-container animate-fade-in">
           <div className="hero-badge animate-float-slow">✨ Our Journey</div>
           <h1 className="hero-title white text-shadow-premium">Redefining Home Services</h1>

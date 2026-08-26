@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import useReveal from "../../hooks/useReveal";
-import InteractiveParticles from "../../components/common/InteractiveParticles";
 import contactBg from "../../assets/images/contact-bg.jpg";
 import emailIcon from "../../assets/images/email-icon.png";
 import phoneIcon from "../../assets/images/phone-icon.png";
@@ -70,7 +69,6 @@ function Contact() {
         <div className="contact-hero" style={{ position: "relative", overflow: "hidden" }}>
           <div className="contact-hero-bg" style={{ backgroundImage: `url(${contactBg})` }}></div>
           <div className="overlay-dark"></div>
-          <InteractiveParticles />
 
           {/* Ambient Glow Blurs */}
           <div className="contact-glow-1"></div>

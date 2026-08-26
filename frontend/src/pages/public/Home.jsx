@@ -3,7 +3,6 @@ import MainLayout from "../../layouts/MainLayout";
 import { Link } from "react-router-dom";
 import useReveal from "../../hooks/useReveal";
 import AnimatedCounter from "../../components/common/AnimatedCounter";
-import InteractiveParticles from "../../components/common/InteractiveParticles";
 
 // Import Assets
 import heroBg from "../../assets/images/hero-bg.png";
@@ -212,8 +211,6 @@ function Home() {
     <MainLayout>
       {/* ===== HERO SECTION ===== */}
       <section className="hero-section" style={{ position: "relative", overflow: "hidden" }}>
-        {/* Ambient Interactive Particles Background */}
-        <InteractiveParticles />
 
         <div className="hero-content animate-fade-in" style={{ position: "relative", zIndex: 1 }}>
           <div className="hero-announcement animate-fade-in-left">
